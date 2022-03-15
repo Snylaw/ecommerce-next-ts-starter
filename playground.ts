@@ -6,7 +6,7 @@
 
 class Person {
     name: string
-    age: number
+    age?: number
 
     constructor(name: string, age: number) {
         this.name = name
@@ -20,18 +20,19 @@ class Person {
 
 // OU
 
-type PersonLoggerFn = (name: string, age: number) => string     // Better for this 
+type PersonLoggerFn = (name: string, age?: number) => string     // Better for this 
 
 export default function play() {
     const name: string = "Rafael"
     const age: number = 23
 
-    // const person: Person = {
-    //     name: "John",
-    //     age: 30
-    // }
+    const john: Person = {
+        name: "John"
+    }
 
-    const logPersonInfo: PersonLoggerFn = (personName: string, personAge: number): string => {
+    const logPersonInfo: PersonLoggerFn = (
+        personName: string, personAge: number = 0
+    ): string => {
         const info = `Name: ${personName}, age: ${personAge}`
         console.log(info)
         return info
@@ -43,7 +44,7 @@ export default function play() {
         return info
     }
 
-    const log: string = logPersonInfo(name, age)
+    const log: string = logPersonInfo(name)
 
     const person = new Person("Rafael", 25)
 
