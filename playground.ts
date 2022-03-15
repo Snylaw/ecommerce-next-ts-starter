@@ -1,7 +1,17 @@
 
-interface Person {
+// interface Person {
+//     name: string
+//     age: number
+// }
+
+class Person {
     name: string
     age: number
+
+    constructor(name: string, age: number) {
+        this.name = name
+        this.age = age
+    }
 }
 
 // interface PersonLoggerFn {
@@ -16,10 +26,10 @@ export default function play() {
     const name: string = "Rafael"
     const age: number = 23
 
-    const person: Person = {
-        name: "John",
-        age: 30
-    }
+    // const person: Person = {
+    //     name: "John",
+    //     age: 30
+    // }
 
     const logPersonInfo: PersonLoggerFn = (personName: string, personAge: number): string => {
         const info = `Name: ${personName}, age: ${personAge}`
@@ -34,5 +44,8 @@ export default function play() {
     }
 
     const log: string = logPersonInfo(name, age)
+
+    const person = new Person("Rafael", 25)
+
     logPersonInfo2(person)
 }
