@@ -1,25 +1,19 @@
 
-// TS recommend to use Interfaces over Types when possible
-
-// Describe data structures in more natural way
-// Describing objects
-// Ex: Shipment, Orders ...
 interface Person {
     name: string
     age: number
 }
 
-// type aliases
-// to describe function types
-// type Person = {
-//     name: string
-//     age: number
+// interface PersonLoggerFn {
+//     (name: string, age: number): string
 // }
 
-type Data = string
+// OU
+
+type PersonLoggerFn = (name: string, age: number) => string     // Better for this 
 
 export default function play() {
-    const name: Data = "Rafael"
+    const name: string = "Rafael"
     const age: number = 23
 
     const person: Person = {
@@ -27,7 +21,7 @@ export default function play() {
         age: 30
     }
 
-    function logPersonInfo(personName: string, personAge: number) {
+    const logPersonInfo: PersonLoggerFn = (personName: string, personAge: number): string => {
         const info = `Name: ${personName}, age: ${personAge}`
         console.log(info)
         return info
@@ -39,6 +33,6 @@ export default function play() {
         return info
     }
 
-    logPersonInfo(name, age)
+    const log: string = logPersonInfo(name, age)
     logPersonInfo2(person)
 }
