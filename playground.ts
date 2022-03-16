@@ -16,6 +16,11 @@ interface AcademicPerson extends Person {
     publications: string[]
 }
 
+interface Person {
+    prop1: string
+    prop2: number
+}
+
 type Human = BusinessPerson | AcademicPerson | { kind: "otherType", special: string }
 
 type RaceCar = {
@@ -38,6 +43,14 @@ export default function play() {
         name: "Race Car",
         maxSpeed: 200,
         team: "RedBull"
+    }
+
+    const person: Person = {
+        prop1: "",
+        prop2: 2,
+        name: "",
+        kind: "academic",
+        age: 23
     }
 
     function logPersonInfo(human: Human) {
