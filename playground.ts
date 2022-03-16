@@ -59,6 +59,16 @@ export default function play() {
         age: 23
     }
 
+    function printInfo(someObject: {[key: string]: string | number | boolean}) {
+
+    }
+
+    printInfo({
+        age: 23,
+        name: "sheesh",
+        isGood: true
+    })
+
     function logPersonInfo(human: Human) {
         if (human.kind === "academic") {
             console.log(human)
