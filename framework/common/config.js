@@ -5,8 +5,22 @@ const fs = require('fs');
 const merge = require('deepmerge');
 const prettier = require('prettier');
 
+const ALLOWED_FRAMEWORKS = ["shopify", "bigcommerce", "shopify_local"];
+
 function withFrameworkConfig(defaultConfig = {}) {
-    const framework = defaultConfig?.framework.name
+    let framework = defaultConfig?.framework?.name
+
+    if (!framework) {
+        throw new Error('Missing api framework name in config')
+    }
+
+    if (!ALLOWED_FRAMEWORKS.includes(framework)) {
+        throw new Error(`Invalid api framework name: ${framework}, allowed values: ${ALLOWED_FRAMEWORKS.join(', ')}`)
+    }
+    
+    if (framework === "shopify_local") {
+        framework = ALLOWED_FRAMEWORKS[0];
+    }
 
     const frameworkNextConfig = require(path.join("../", framework, "next.config"));
     const config = merge(defaultConfig, frameworkNextConfig);
