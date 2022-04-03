@@ -4,7 +4,7 @@ import { getConfig } from "@framework/api/config";
 
 export async function getStaticProps() {
   const config = getConfig();
-  const products = await getAllProducts();
+  const products = await getAllProducts(config);
 
   return {
     props: {
