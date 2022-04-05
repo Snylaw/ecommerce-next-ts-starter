@@ -1,4 +1,6 @@
 
+@import  "./base.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,5 +8,6 @@
 @layer components {
    .fit {
         min-height: calc(100vh - 88px);
+        background-color: var(--green)
     } 
 }
