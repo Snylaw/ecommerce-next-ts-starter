@@ -1,10 +1,14 @@
 import { FC } from "react"
+import s from "./Layout.module.css"
 
 const Layout: FC = ({children}) => {
     return (
-        <div className="layout">
-            {children}
-        </div>
+        <> 
+            <main className={s.root}>
+                {children}
+            </main>
+        </>
+        
     )
 }
 
