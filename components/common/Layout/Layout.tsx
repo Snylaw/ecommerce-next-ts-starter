@@ -3,11 +3,11 @@ import s from "./Layout.module.css"
 
 const Layout: FC = ({children}) => {
     return (
-        <> 
-            <main className={s.root}>
+        <div className={s.root}> 
+            <main className="fit">
                 {children}
             </main>
-        </>
+        </div>
         
     )
 }
