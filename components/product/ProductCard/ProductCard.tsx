@@ -2,6 +2,7 @@ import { Product } from "@common/types/product"
 import { FC } from "react"
 import Link from "next/link"
 import Image from "next/image"
+import s from "./ProductCard.module.css"
 
 interface Props {
     product: Product
@@ -13,26 +14,24 @@ const ProductCard: FC<Props> = ({product}) => {
 
     return (
         <Link href={`/products/${product.slug}`}>
-            <a>
-                <div>
-                    <h3>
-                        <span>
-                            {product.name}
-                        </span>
+            <a className={s.root}>
+                <div className={s.productTag}>
+                    <h3 className={s.productTitle}>
+                        <span>{product.name}</span>
                     </h3>
-                    <span>14 $</span>
-                    { product.images && (
-                        <Image 
-                            alt={product.name ?? "Product image"} 
-                            src={product.images[0].url ?? placeholderImage}
-                            width={540}
-                            height={540}
-                            quality="85"
-                            layout="responsive"
-                        />
-                    )
-                    }
+                    <span className={s.productPrice}>14 $</span>
                 </div>
+                { product.images && (
+                    <Image 
+                        alt={product.name ?? "Product image"} 
+                        src={product.images[0].url ?? placeholderImage}
+                        width={540}
+                        height={540}
+                        quality="85"
+                        layout="responsive"
+                    />
+                )
+                }
             </a>
         </Link>
     )
