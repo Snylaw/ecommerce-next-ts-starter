@@ -35,14 +35,18 @@
   line-height: 2.2em;
 
   & span {
-    @apply py-4 px-6;
+    @apply py-4 px-6 bg-primary;
     box-decoration-break: clone;
   }
 }
 
 .productPrice {
-  @apply pb-4 pt-2 px-6 font-semibold text-sm;
+  @apply pb-4 pt-2 px-6 font-semibold text-sm bg-primary;
   letter-spacing: 0.4px;
+}
+
+.productImage {
+    @apply transition-transform duration-500 block;
 }
 
 .productBg {
@@ -50,7 +54,7 @@
     background-color: #212529;
 
     &:before {
-        @apply block w-full h-full bg-repeat-space;
+        @apply transition-transform duration-500 block w-full h-full bg-repeat-space;
         content: '';
         background-image: url('/product-pattern-bg.svg');
     }
