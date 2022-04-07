@@ -17,30 +17,46 @@ const ProductCard: FC<Props> = ({product, variant = "simple"}) => {
         <Link href={`/products/${product.slug}`}>
             <a className={s.root}>
                 {   variant === "slim" ? 
-                    <>SLIM PRODUCT</> : (
-                        <>
-                            <div className={s.productBg}></div>
-                            <div className={s.productTag}>
-                                <h3 className={s.productTitle}>
-                                    <span>{product.name}</span>
-                                </h3>
-                                <span className={s.productPrice}>
-                                    {product.price.value} {product.price.currencyCode}
-                                </span>
-                            </div>
-                            { product.images && (
-                                <Image 
-                                    className={s.productImage}
-                                    alt={product.name ?? "Product image"} 
-                                    src={product.images[0].url ?? placeholderImage}
-                                    width={540}
-                                    height={540}
-                                    quality="85"
-                                    layout="responsive"
-                                />
-                            )
-                            }
-                        </>
+                    <>
+                        <div className="inset-0 flex items-center justify-center absolute z-20">
+                            <span className="bg-black text-white p-3 font-bold text-xl">
+                                {product.name}
+                            </span>
+                        </div>
+                        { product.images && (
+                            <Image 
+                                className={s.productImage}
+                                alt={product.name ?? "Product image"} 
+                                src={product.images[0].url ?? placeholderImage}
+                                width={320}
+                                height={320}
+                                quality="85"
+                                layout="fixed"
+                            />
+                        )}
+                    </> : (
+                    <>
+                        <div className={s.productBg}></div>
+                        <div className={s.productTag}>
+                            <h3 className={s.productTitle}>
+                                <span>{product.name}</span>
+                            </h3>
+                            <span className={s.productPrice}>
+                                {product.price.value} {product.price.currencyCode}
+                            </span>
+                        </div>
+                        { product.images && (
+                            <Image 
+                                className={s.productImage}
+                                alt={product.name ?? "Product image"} 
+                                src={product.images[0].url ?? placeholderImage}
+                                width={540}
+                                height={540}
+                                quality="85"
+                                layout="responsive"
+                            />
+                        )}
+                    </>
                     )
                 }
             </a>
