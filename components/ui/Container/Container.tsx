@@ -1,17 +1,14 @@
-import { ReactNode, FC } from 'react';
+import { ReactNode, FC, ComponentType, HTMLAttributes } from 'react';
 
 interface Props {
     children: ReactNode | ReactNode[]
-    el?: any
+    el?: React.ComponentType<HTMLAttributes<HTMLElement>>
 }
 
 const Container: FC<Props> = ({children, el: Component = "div"}) => {
 
     return (
-        <Component 
-            style={{maxWidth: "1920px"}}
-            className="px-6 mx-auto max-w-8xl"
-        >
+        <Component className="px-6 mx-auto max-w-8xl">
             {children}
         </Component>
     )
