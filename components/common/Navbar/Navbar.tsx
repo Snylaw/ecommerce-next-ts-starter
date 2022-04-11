@@ -5,7 +5,6 @@ import s from "./Navbar.module.css"
 import { Usernav } from "@components/common"
 
 const Navbar: FC = () => {
-
     return (
         <Container>
             <div className={s.root}>

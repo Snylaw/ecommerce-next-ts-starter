@@ -12,7 +12,7 @@ interface Props {
 const placeholderImage = "/product-image-placeholder.svg"
 
 const ProductCard: FC<Props> = ({product, variant = "simple"}) => {
-
+    console.log("Render ProductCard")
     return (
         <Link href={`/products/${product.slug}`}>
             <a className={s.root}>
