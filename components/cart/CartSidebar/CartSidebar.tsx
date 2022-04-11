@@ -4,7 +4,7 @@ import { Bag, Cross } from '@components/icons'
 import cn from "classnames"
 
 const CartSidebar: FC = () => {
-  const isEmpty = false
+  const isEmpty = true
 
   const rootClass = cn(
     "h-full flex flex-col",
