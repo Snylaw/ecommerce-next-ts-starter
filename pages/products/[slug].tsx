@@ -19,9 +19,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 // provide product details in response to the slug
 export const getStaticProps = async ({
-    params}: GetStaticPropsContext<{slug: string}>) => {
+    params}: GetStaticPropsContext<{slug: string}>
+) => {
     const config = getConfig()
-    const { product } = await getProduct(config)
+    const { product } = await getProduct({
+        config,
+        variables: { slug: params?.slug }})
+
     return {
         props: {
             product
