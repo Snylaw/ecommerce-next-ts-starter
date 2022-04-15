@@ -1,5 +1,5 @@
 import { Layout } from "@components/common"
-import { Container } from "@components/ui"
+import { ProductView } from "@components/product"
 import { getConfig } from "@framework/api/config"
 import { 
     getAllProductsPaths, 
@@ -36,45 +36,9 @@ export const getStaticProps = async ({
 
 export default function ProductSlug({ product }: InferGetStaticPropsType<typeof getStaticProps>) {
     return (
-        <Container>
-            <p>id: {product?.id}</p>
-            <p>name: {product?.name}</p>
-            <p>price value: {product?.price.value}</p>
-            <p>price currency: {product?.price.currencyCode}</p>
-            <p>description: {product?.description}</p>
-
-            <h1 className="mb-4">OPTIONS</h1>
-            <div>
-                { product?.options.map(option => 
-                    <div>
-                        <p>Name: {option.displayName}</p>
-                        { option.values.map(value =>
-                            <div>
-                                <p>Label: {value.label}</p>
-                                <p>Hex Color: {value.hexColor}</p>
-                            </div>
-                        )}
-                    </div>     
-                )}
-            </div>
-            <h1 className="mb-4">VARIANTS</h1>
-            { product?.variants.map(variant =>
-                <div>
-                    <p>Variant Name: {variant.name}</p>
-                    { variant.options.map(option =>
-                        <div>
-                            <p>Name: {option.displayName}</p>
-                            { option.values.map(value =>
-                                <div>
-                                    <p>Label: {value.label}</p>
-                                    <p>Hex Color: {value.hexColor}</p>
-                                </div>
-                            )}
-                        </div>
-                    )}
-                </div>
-            )}
-        </Container>
+        <>
+            { product && <ProductView product={product} /> }
+        </>
     )
 }
 
