@@ -1,20 +1,35 @@
 import React, { FC, Children, isValidElement } from 'react'
 import s from './ProductSlider.module.css'
 import { useKeenSlider } from "keen-slider/react"
+import cn from 'classnames'
 
 const ProductSlider: FC = ({children}) => {
-
-    const [sliderRef, _] = useKeenSlider<HTMLDivElement>({
+    const [currentSlide, setCurrentSlide] = React.useState(0)
+    const [sliderRef, slider] = useKeenSlider<HTMLDivElement>({
         initial: 0,
         loop: true,
         slideChanged(slider) {
-          console.log("Slide changed to: ", slider.track.details.rel)
+          setCurrentSlide(slider.track.details.rel)
         },
-      })
+    })
+
+    console.log(currentSlide)
 
     return (
         <div className={s.root}>
             <div ref={sliderRef} className="keen-slider h-full transition-opacity">
+                <button 
+                    onClick={(e: any) =>
+                        e.stopPropagation() || slider.current?.prev()
+                    }
+                    className={cn(s.leftControl, s.control)} 
+                />
+                <button 
+                    onClick={(e: any) =>
+                        e.stopPropagation() || slider.current?.next()
+                    }
+                    className={cn(s.rightControl, s.control)} 
+                />
                 { Children.map(children, child => {
 
                     if (isValidElement(child)) {
