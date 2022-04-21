@@ -7,6 +7,7 @@ import Image from "next/image"
 import { Product } from '@common/types/product'
 import { ProductSlider, Swatch } from '@components/product'
 import { Choices, getVariant } from '../helpers'
+import { useUI } from '@components/ui/context'
 
 interface Props {
   product: Product
@@ -14,9 +15,24 @@ interface Props {
 
 const ProductView: FC<Props> = ({ product }) => {
   const [ choices, setChoices ] = useState<Choices>({})
+  const { openSidebar } = useUI()
 
   const variant = getVariant(product, choices)
-  
+
+  const addToCart = () => {
+    try {
+      const item = {
+        productId: String(product.id),
+        variantId: variant?.id,
+        variantOptions: variant?.options
+
+      }
+
+      alert(JSON.stringify(item))
+      openSidebar()
+    } catch {}
+  }
+
   return (
     <Container>
       <div className={cn(s.root, 'fit', "mb-5")}>
@@ -82,7 +98,7 @@ const ProductView: FC<Props> = ({ product }) => {
           <div>
             <Button 
               className={s.button}
-              onClick={() => alert("Add to cart")}>
+              onClick={addToCart}>
               Add to Cart
             </Button>
           </div>
