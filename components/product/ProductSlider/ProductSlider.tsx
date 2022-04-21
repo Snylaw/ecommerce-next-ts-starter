@@ -13,8 +13,6 @@ const ProductSlider: FC = ({children}) => {
         },
     })
 
-    console.log(currentSlide)
-
     return (
         <div className={s.root}>
             <div ref={sliderRef} className="keen-slider h-full transition-opacity">
