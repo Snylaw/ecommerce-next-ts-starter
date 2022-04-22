@@ -1,4 +1,3 @@
-
 import cn from 'classnames'
 import { FC, useState } from 'react'
 import s from './ProductView.module.css'
@@ -8,6 +7,7 @@ import { Product } from '@common/types/product'
 import { ProductSlider, Swatch } from '@components/product'
 import { Choices, getVariant } from '../helpers'
 import { useUI } from '@components/ui/context'
+import useAddItem from "@framework/cart/use-add-item"
 
 interface Props {
   product: Product
@@ -16,6 +16,7 @@ interface Props {
 const ProductView: FC<Props> = ({ product }) => {
   const [ choices, setChoices ] = useState<Choices>({})
   const { openSidebar } = useUI()
+  const addItem = useAddItem()
 
   const variant = getVariant(product, choices)
 
@@ -25,10 +26,10 @@ const ProductView: FC<Props> = ({ product }) => {
         productId: String(product.id),
         variantId: variant?.id,
         variantOptions: variant?.options
-
       }
 
-      alert(JSON.stringify(item))
+      const output = addItem(item)
+      alert(JSON.stringify(output))
       openSidebar()
     } catch {}
   }
