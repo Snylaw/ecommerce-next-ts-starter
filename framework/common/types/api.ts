@@ -18,3 +18,9 @@ export interface ApiConfig {
     ): Promise<ApiFetcherResults<T>>
 }
 
+export interface ApiHooks {
+    cart: {
+        useAddItem: any
+    }
+}
+
