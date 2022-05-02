@@ -14,6 +14,7 @@ export const handler = {
     }: any) {
         const data = await fetch({...options})
         // We need checkout ID
+        console.log(checkoutId)
 
         // Get checkout
 
