@@ -14,7 +14,7 @@ export const handler = {
         input: { checkoutId }
     }: any) {
         let checkout;
-
+        
         if (checkoutId) {
             const { data } = await fetch({
                 ...options
