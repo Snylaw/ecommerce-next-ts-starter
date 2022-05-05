@@ -5,6 +5,13 @@ import { checkoutLineItemsAddMutation } from "@framework/utils/mutations";
 
 export default useAddItem;
 
+export type AddItemHook = {
+    fetcherInput: {
+        variantId: string;
+        quantity: number;
+    }
+}
+
 export const handler: MutationHook = {
     fetcherOptions: {
         query: checkoutLineItemsAddMutation
