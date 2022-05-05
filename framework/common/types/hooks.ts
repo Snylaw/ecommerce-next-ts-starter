@@ -11,6 +11,10 @@ export type MutationHookContext<I, O> = {
     fetch: (input: I) => Promise<O>;
 }
 
+export type SWRHookContext<I, O> = {
+    useData: (input: I) => Promise<O>;
+}
+
 export type HookFetcherContext<I, O> = {
     input: I;
     fetch: ApiFetcher<O>
@@ -40,3 +44,17 @@ export type MutationHook<H extends HookDescriptor = any> = {
         context: MutationHookContext<H["fetcherInput"], H["data"]>
     ): () => (input: H["fetcherInput"]) => Promise<H["data"]> 
 }
+
+export type SWRHook<H extends HookDescriptor = any> = {
+    fetcherOptions: HookFetcherOptions
+    fetcher: HookFetcherFn<
+        H["fetcherInput"], 
+        H["fetcherOutput"], 
+        H["data"]
+    >
+    useHook(
+        context: SWRHookContext<H["fetcherInput"], H["data"]>
+    ): Promise<H["data"]> 
+}
+
+export type Hook = MutationHook | SWRHook;
