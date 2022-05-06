@@ -1,4 +1,4 @@
-import useCart from "@common/cart/use-cart"
+import useCart, { UseCart } from "@common/cart/use-cart"
 import { Cart } from "@common/types/cart";
 import { 
     checkoutToCart, 
@@ -19,7 +19,7 @@ export type UseCartHookDescriptor = {
     data: Cart
 }
 
-export default useCart
+export default useCart as UseCart<typeof handler>
 
 export const handler: SWRHook<UseCartHookDescriptor> = {
     fetcherOptions: {
@@ -50,7 +50,7 @@ export const handler: SWRHook<UseCartHookDescriptor> = {
         
         return cart
     },
-    useHook: ({useData}) => {
+    useHook: ({useData}) => () => {
         const data = useData({
             swrOptions: {
                 revalidateOnFocus: false
