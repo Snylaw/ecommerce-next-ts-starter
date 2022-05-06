@@ -1,5 +1,6 @@
 import { useAddItem } from "@common/cart";
 import { UseAddItem } from "@common/cart/use-add-item";
+import useCart from "@common/cart/use-cart";
 import { Cart } from "@common/types/cart";
 import { MutationHook } from "@common/types/hooks";
 import { CheckoutLineItemsAddPayload } from "@framework/schema";
@@ -44,8 +45,11 @@ export const handler: MutationHook<AddItemHookDescriptor> = {
         return cart;
     },
     useHook: ({fetch}) => () => {
+        const { mutate: updateCart } = useCart()
+
         return async (input) => {
             const res = await fetch(input);
+            updateCart(res, false)
             return res
         }
     }
