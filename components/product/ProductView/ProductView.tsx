@@ -26,8 +26,7 @@ const ProductView: FC<Props> = ({ product }) => {
     try {
       const item = {
         productId: String(product.id),
-        variantId: String(variant?.id),
-        variantOptions: variant?.options,
+        variantId: String(variant ? variant.id : product.variants[0].id),
         quantity: 1
       }
 

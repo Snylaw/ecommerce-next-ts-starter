@@ -1,4 +1,5 @@
 import { ButtonHTMLAttributes, FC, ReactNode } from 'react'
+import { LoadingDots } from "@components/ui"
 import s from './Button.module.css'
 import cn from 'classnames'
 
@@ -29,7 +30,11 @@ const Button: FC<Props> = ({
             {...rest}
         >
             {children}
-            { isLoading && <div>Loading...</div> }
+            { isLoading && 
+                <i className='pl-2 m-0 flex'>
+                    <LoadingDots />
+                </i> 
+            }
         </button>
     )
 }
