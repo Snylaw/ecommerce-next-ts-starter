@@ -2,7 +2,7 @@ import { ReactNode, FC, ComponentType, HTMLAttributes } from 'react';
 
 interface Props {
     children: ReactNode | ReactNode[]
-    el?: React.ComponentType<HTMLAttributes<HTMLElement>>
+    el?: ComponentType<HTMLAttributes<HTMLElement>>
 }
 
 const Container: FC<Props> = ({children, el: Component = "div"}) => {
