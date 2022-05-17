@@ -8,6 +8,8 @@ import {
 import { useMemo } from "react";
 import { SWRHook } from "@common/types/hooks";
 import { Checkout } from "@framework/schema";
+import { useApiProvider } from "@common";
+import Cookies from "js-cookie";
 
 export type UseCartHookDescriptor = {
     fetcherInput: {
@@ -51,11 +53,16 @@ export const handler: SWRHook<UseCartHookDescriptor> = {
         return cart
     },
     useHook: ({useData}) => () => {
+        const { checkoutCookie } = useApiProvider()
         const result = useData({
             swrOptions: {
                 revalidateOnFocus: false
             }
         })
+
+        if (result.data?.completedAt) {
+            Cookies.remove(checkoutCookie)
+        }
 
         return useMemo(() => {
             return {

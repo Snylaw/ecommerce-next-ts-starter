@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { SHOPIFY_CHECKOUT_URL_COOKIE } from "@framework/const"
+import { SHOPIFY_CHECKOUT_URL_COOKIE, SHOPIFY_CHECKOUT_ID_COOKIE } from "@framework/const"
 
 export default function checkout(req: NextApiRequest, res: NextApiResponse) {
 
